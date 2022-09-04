@@ -39,6 +39,9 @@ const loadNews = (category_id) => {
 
 const displayNews = allNews => {
 
+  allNews.sort(function (a, b) {
+    return b.total_view - a.total_view;
+  })
     const allNewsContainer = document.getElementById('all-news');
     allNewsContainer.innerHTML = '';
 
@@ -122,7 +125,7 @@ const displayModalData = (data) => {
   modalBody.innerHTML = `
   <img class=""  src="${data.image_url}"/>
   <p>${data.author.published_date ? data.author.published_date : 'No Data Found'}</p>
-  <p>${data.details.length > 300 ? data.details.slice(0, 300) + '...' : data.details}</p>
+  <p class="mb-48">${data.details.length > 300 ? data.details.slice(0, 300) + '...' : data.details}</p>
 
   `
 
