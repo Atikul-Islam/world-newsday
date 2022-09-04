@@ -72,7 +72,7 @@ const displayNews = allNews => {
           <i class="fa-regular fa-star"></i>
          </div>
           <div class="card-actions justify-end">
-            <button onclick="loadModalData('${news._id}')" class="bg-blue-500 rounded px-5 py-2">Listen</button>
+            <button onclick="loadModalData('${news._id}')" class="bg-blue-500 rounded px-5 py-2">See More</button>
           </div>
         </div>
        </div>
@@ -84,6 +84,26 @@ const displayNews = allNews => {
     })
 
 
+
+}
+
+const loadModalData = (IdNews) => {
+  fetch(`https://openapi.programming-hero.com/api/news/${IdNews}`)
+      .then(res => res.json())
+      .then(data => displayModalData(data.data[0]))
+}
+
+const displayModalData = (data) => {
+
+  const modalTitle = document.getElementById('exampleModalLabel')
+  modalTitle.innerText =`${data.author.name ? data.author.name : 'No data Found'}`
+  const modalBody = document.getElementById('modal-body')
+  modalBody.innerHTML = `
+  <img class="img-fluid"  src="${data.image_url}"/>
+  <p>${data.author.published_date ? data.author.published_date : 'No Data Found'}</p>
+  <p>${data.details.length > 300 ? data.details.slice(0, 300) + '...' : data.details}</p>
+
+  `
 
 }
 
