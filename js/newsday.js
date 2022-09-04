@@ -120,7 +120,7 @@ const displayModalData = (data) => {
   modalTitle.innerText =`${data.author.name ? data.author.name : 'No data Found'}`
   const modalBody = document.getElementById('modal-body')
   modalBody.innerHTML = `
-  <img class="img-fluid"  src="${data.image_url}"/>
+  <img class=""  src="${data.image_url}"/>
   <p>${data.author.published_date ? data.author.published_date : 'No Data Found'}</p>
   <p>${data.details.length > 300 ? data.details.slice(0, 300) + '...' : data.details}</p>
 
