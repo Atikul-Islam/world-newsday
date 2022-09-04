@@ -2,6 +2,9 @@ const loadCategory = () =>{
     fetch('https://openapi.programming-hero.com/api/news/categories')
   .then(response => response.json())
   .then(data => displayCategories(data.data.news_category))
+  .catch(error => {
+    console.log('There is an Error to loading data', error)
+  })
 }
 
 const displayCategories = categories => {
@@ -28,7 +31,9 @@ const loadNews = (category_id) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data))
-
+        .catch(error => {
+          console.log('There is an Error to loading data', error)
+        })
       spinner.classList.remove('hidden')
 }
 
@@ -104,6 +109,9 @@ const loadModalData = (IdNews) => {
   fetch(`https://openapi.programming-hero.com/api/news/${IdNews}`)
       .then(res => res.json())
       .then(data => displayModalData(data.data[0]))
+      .catch(error => {
+        console.log('Here is an Error', error)
+      })
 }
 
 const displayModalData = (data) => {
