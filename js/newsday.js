@@ -20,12 +20,16 @@ const displayCategories = categories => {
     })
 }
 
+const spinner = document.getElementById('spinner')
+
 const loadNews = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
 
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data))
+
+      spinner.classList.remove('hidden')
 }
 
 const displayNews = allNews => {
@@ -76,6 +80,7 @@ const displayNews = allNews => {
     
     `;
         allNewsContainer.appendChild(newsDiv);
+        spinner.classList.add('hidden')
     })
 
 
