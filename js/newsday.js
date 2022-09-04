@@ -38,9 +38,22 @@ const displayNews = allNews => {
     allNewsContainer.innerHTML = '';
 
     const foundData = document.getElementById('found-data')
-
+    foundData.textContent = ""
+   
     const notFoundData = document.getElementById('not-found-data')
+    if (allNews.length === 0) {
+      notFoundData.classList.remove('hidden')
+      foundData.classList.add('hidden')
+  }
+  else {
+      notFoundData.classList.add('hidden');
+      foundData.classList.remove('hidden')
 
+      const span = document.createElement('span');
+      span.innerText =`${allNews.length} Results Found`
+      foundData.appendChild(span)
+
+  }
     allNews.forEach(news => {
 
         const newsDiv = document.createElement('div');
