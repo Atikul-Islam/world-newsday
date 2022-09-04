@@ -1,17 +1,23 @@
-const loadCategory = () =>{ fetch('https://openapi.programming-hero.com/api/news/categories')
+const loadCategory = () =>{ 
+    fetch('https://openapi.programming-hero.com/api/news/categories')
   .then(response => response.json())
   .then(data => displayCategories(data.data.news_category))
 }
 
-const displayCategories = categories =>{
+const displayCategories = categories => {
+    categories.forEach(category => {
         const categoriesContainer = document.getElementById('categories-container');
-        for(const category of categories){
-            const categoryDiv = document.createElement('div');
-            categoryDiv.innerHTML = `
-            <a>${category.category_name}</a>
-            `;
-            categoriesContainer.appendChild(categoryDiv);
-        }
+        const categoryLi = document.createElement('li');
+        categoryLi.innerHTML = `
+    <a onclick="loadNews('${category.category_id}')" href="#" class="text-dark">${category.category_name}</a>
+    
+    `;
+        categoriesContainer.classList.add('flex');
+        categoriesContainer.classList.add('list-none');
+        categoryLi.classList.add('p-4', 'font-semibold');
+        categoriesContainer.appendChild(categoryLi);
+
+    })
 }
 
 loadCategory();
